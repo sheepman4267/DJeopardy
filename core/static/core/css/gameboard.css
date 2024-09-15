@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'League Gothic Regular';
+    src: url('/static/core/fonts/LeagueGothic-Regular.woff2') format('woff2');
+    font-weight: 200 900;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.board {
+    width: 70%;
+    height: 80dvh;
+    margin-inline: auto;
+    margin-top: calc(20dvh / 2);
+    background: #000000;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.category {
+    flex-grow: 1;
+    max-width: 15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.category-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "League Gothic Regular";
+    background: blue;
+    color: #ffffff;
+    border: 3px solid darkblue;
+    border-radius: 0.5rem;
+
+}
+
+button.answer {
+    display: block;
+    margin-inline: auto;
+    width: 100%;
+    flex-grow: 1;
+    max-height: 8rem;
+    font-family: "League Gothic Regular";
+    font-size: 5rem;
+    background: blue;
+    color: yellow;
+    border: 3px solid darkblue;
+    border-radius: 0.5rem;
+}
+
+button.answer.completed {
+    opacity: 0.5;
+    font-size: 2rem;
+}
+
+form.answer {
+    background: blue;
+    color: white;
+}
+
+form.answer textarea {
+    max-width: calc(100% - 1rem);
+    margin: 0.5rem;
+}
+
+.player-buzz-in {
+    font-size: 40pt;
+    text-align: center;
+}

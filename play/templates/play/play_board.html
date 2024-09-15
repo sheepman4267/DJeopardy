@@ -1,0 +1,18 @@
+{% extends 'core/board_base.html' %}
+{% load static %}
+
+{% block extra_js %}
+    <script type="text/hyperscript">
+        eventsource PlayerButtons from /events
+            on message
+                log it
+                then put it as Fragment into <.player-buzz-in/>
+            end
+        end
+    </script>
+    <script src="{% static 'core/js/eventsource.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+    <div class="player-buzz-in" _="">Buzz in!</div>
+{% endblock %}

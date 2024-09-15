@@ -1,0 +1,7 @@
+<button class="answer{% if answer.completed %} completed{% endif %}" {% if not answer.completed %}hx-get="{% url 'play:fullanswer' pk=answer.pk %}" hx-target="#board_container" hx-swap="beforeend"{% endif %}>
+    {% if not answer.completed %}
+        {{ answer.points }}
+    {% else %}
+        {{ answer.answer }}
+    {% endif %}
+</button>

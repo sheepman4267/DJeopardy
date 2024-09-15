@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'host:category-create' %}">
+    {% csrf_token %}
+    {{ form.name.as_field_group }}
+    <input type="hidden" name="game" _="on load set my @value to @data-game-pk of <body/>">
+    <input type="submit">
+</form>

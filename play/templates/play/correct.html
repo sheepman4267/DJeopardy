@@ -1,0 +1,10 @@
+<div class="fullanswer">
+    {{ answer.question }}
+    <button id="correct" hx-get="{% url 'play:correct' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Correct</button>
+    <button id="incorrect" hx-get="{% url 'play:incorrect' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Incorrect</button>
+</div>
+
+<li id="player-{{ player.pk }}" hx-swap-oob="true">
+    <div>{{ player.name }}</div>
+    <div>{{ player.points }}</div>
+</li>

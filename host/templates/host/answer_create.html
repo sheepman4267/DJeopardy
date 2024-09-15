@@ -1,0 +1,10 @@
+{{ form.errors }}
+<form class="answer" method="post" action="{% url 'host:answer-create' %}">
+    {% csrf_token %}
+    {{ form.answer.as_field_group }}
+    {{ form.question.as_field_group }}
+    {{ form.double.as_field_group }}
+    {{ form.points.as_field_group }}
+    <input type="hidden" name="category" _="on load set my @value to @data-category-pk of closest <div/>">
+    <input type="submit">
+</form>
