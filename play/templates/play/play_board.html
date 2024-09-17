@@ -6,7 +6,7 @@
         eventsource PlayerButtons from /events
             on message
                 log it
-                then put it as Fragment into <.player-buzz-in/>
+                then send 'buzz' to #player-buzz-in
             end
         end
     </script>
@@ -14,5 +14,5 @@
 {% endblock %}
 
 {% block header %}
-    <div class="player-buzz-in" _="">Buzz in!</div>
+    {% include 'play/buzz_in.html' %}
 {% endblock %}
