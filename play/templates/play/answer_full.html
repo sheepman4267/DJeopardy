@@ -1,5 +1,7 @@
 <div class="fullanswer">
     {{ answer.answer }}
-    <button id="correct" hx-get="{% url 'play:correct' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Correct</button>
-    <button id="incorrect" hx-get="{% url 'play:incorrect' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Incorrect</button>
+    <nav>
+        <button id="correct" hx-get="{% url 'play:correct' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Correct</button>
+        <button id="incorrect" hx-get="{% url 'play:incorrect' answer.pk %}" hx-swap="outerHTML" hx-target="<.fullanswer/>">Incorrect</button>
+    </nav>
 </div>

@@ -8,17 +8,23 @@
     box-sizing: border-box;
 }
 
+body {
+    background: radial-gradient(circle, rgba(23,155,232,1) 0%, rgba(53,223,208,1) 13%, rgba(167,214,86,1) 27%, rgba(204,90,90,1) 42%, rgba(64,72,193,1) 59%, rgba(88,0,108,1) 90%, rgba(70,0,46,1) 100%);
+}
+
 .board {
-    width: 70%;
+    width: 83%;
     height: 80dvh;
     margin-inline: auto;
-    margin-top: calc(20dvh / 2);
-    background: #000000;
+    background: #000000cc;
+    border-radius: 1.5rem;
     display: flex;
     flex-direction: row;
     text-align: center;
     gap: 1rem;
     padding: 1rem;
+    justify-content: center;
+    grid-area: board;
 }
 
 .category {
@@ -37,7 +43,9 @@
     color: #ffffff;
     border: 3px solid darkblue;
     border-radius: 0.5rem;
-
+    padding: 0.5rem;
+    min-height: 11rem;
+    align-content: center;
 }
 
 button.answer {
@@ -52,10 +60,16 @@ button.answer {
     color: yellow;
     border: 3px solid darkblue;
     border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.board_container:has(.fullanswer) button.answer,
+.board_container:has(.fullanswer) .category-heading,
+button.answer.completed {
+    opacity: 0.5;
 }
 
 button.answer.completed {
-    opacity: 0.5;
     font-size: 2rem;
 }
 
@@ -72,4 +86,59 @@ form.answer textarea {
 .player-buzz-in {
     font-size: 40pt;
     text-align: center;
+}
+
+.player-footer ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.player-footer ul li {
+    text-align: center;
+    font-family: 'League Gothic Regular';
+    font-size: 2.4rem;
+    width: 10rem;
+    background: blue;
+    border: 5px solid darkblue;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.board_container {
+    display: grid;
+    grid-template-areas: "board";
+    overflow: clip;
+}
+
+.fullanswer {
+    grid-area: board;
+    width: 60%;
+    height: 60dvh;
+    margin-inline: auto;
+    margin-top: calc(calc(80dvh - 60dvh) / 2);
+    background: blue;
+    border: 8px solid darkblue;
+    box-shadow: 0 0 50px 0px yellow;
+    border-radius: 1.5rem;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    font-size: 5rem;
+    color: yellow;
+    font-family: "League Gothic Regular";
+    z-index: 1000;
+    animation: answer-entry 1s;
+}
+
+@keyframes answer-entry {
+    0% {
+        opacity: 0;
+        transform: scale(0%) rotate(-350deg) translate(-100rem);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(100%) rotate(0deg) translate(0);
+    }
 }
