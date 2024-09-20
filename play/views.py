@@ -39,8 +39,11 @@ class FullAnswerView(DetailView):
 
 def buzz_in(request, button_id):
     player = get_object_or_404(Player, button_id=button_id)
-    player.game.current_player = player
-    player.game.save()
+    if player.game.current_answer and not player.game.current_player:
+        player.game.current_player = player
+        player.game.save()
+    else:
+        print(f'Not buzzing in {player}. Current Answer: {player.game.current_answer}. Current Player: {player.game.current_player}')
     django_eventstream.send_event("test", "message", player.name)
     return HttpResponse(f'OK {player}')
 
