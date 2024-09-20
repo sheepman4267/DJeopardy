@@ -32,6 +32,9 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if game.current_answer %}
+                {% include 'play/answer_full.html' with answer=game.current_answer %}
+            {% endif %}
         </div>
         <div class="player-footer">
             <ul>
