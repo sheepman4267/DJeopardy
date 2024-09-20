@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'host:game-update' game.pk %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>

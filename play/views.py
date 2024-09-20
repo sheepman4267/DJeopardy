@@ -1,4 +1,5 @@
 import django_eventstream
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, UpdateView
@@ -15,6 +16,14 @@ class PlayView(DetailView):
     extra_context = {
         'answer_template': 'play/answer.html'
     }
+
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        categories = context['game'].categories.all()
+        paginator = Paginator(categories, context['game'].page_size)
+        context['page'] = paginator.page(self.request.GET.get('page'))
+        context['page_number'] = self.request.GET.get('page')
+        return context
 
 
 class FullAnswerView(DetailView):

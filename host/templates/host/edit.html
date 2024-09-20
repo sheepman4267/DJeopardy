@@ -1,0 +1,60 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <title>{{ game.name }} - DJeopardy</title>
+        <link rel="stylesheet" href="{% static 'core/css/missing.css' %}">
+        <script src="{% static 'core/js/htmx.js' %}"></script>
+        <script src="{% static 'core/js/hyperscript.js' %}"></script>
+        {% block extra_js %}
+        {% endblock %}
+        {% block extra_css %}
+        {% endblock %}
+    </head>
+    <body data-game-pk="{{ game.pk }}">
+        <main>
+            <div class="header">
+                {% block header %}
+                {% endblock %}
+            </div>
+            {% if host %}
+                <button hx-get="{% url 'host:category-create' %}" hx-swap="outerHTML">New Category</button>
+            {% endif %}
+            <div class="board_container" id="board_container">
+                <ul class="board" id="board" data-game-pk="{{ game.pk }}">
+                    {% for category in game.categories.all %}
+                        <li class="category" data-category-pk="{{ category.pk }}">
+                            <span class="category-heading">{{ category.name }}</span>
+                            <ul>
+                                {% for answer in category.answers.all %}
+                                    <li>
+                                        {% include answer_template with answer=answer %}
+                                    </li>
+                                {% endfor %}
+                                {% if host %}
+                                    <button class="answer" hx-get="{% url 'host:answer-create' %}" hx-swap="outerHTML">Add Answer</button>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        <hr>
+            <div class="player-footer">
+                <ul>
+                    {% for player in game.players.all %}
+                        <li id="player-{{ player.pk }}">
+                            {{ player.name }}: {{ player.points }} (Button ID {{ player.button_id }})
+                            <button hx-get="{% url 'host:player-update' player.pk %}" hx-swap="innerHTML" hx-target="closest li">Edit</button>
+                        </li>
+                    {% endfor %}
+                    {% if host %}
+                        <button hx-get="{% url 'host:player-create' %}" hx-swap="outerHTML">Add Player</button>
+                    {% endif %}
+                </ul>
+            </div>
+        <hr>
+        <div>Page Size: {{ game.page_size }}</div>
+        <button hx-get="{% url 'host:game-update' game.pk %}" hx-swap="outerHTML">Edit Game</button>
+        </main>
+    </body>
+</html>

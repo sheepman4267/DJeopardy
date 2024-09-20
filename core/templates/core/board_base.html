@@ -20,7 +20,7 @@
         {% endif %}
         <div class="board_container" id="board_container">
             <div class="board" id="board" data-game-pk="{{ game.pk }}">
-                {% for category in game.categories.all %}
+                {% for category in page %}
                     <div class="category" data-category-pk="{{ category.pk }}">
                         <span class="category-heading">{{ category.name }}</span>
                         {% for answer in category.answers.all %}

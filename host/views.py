@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Game, Category, Answer, Player
 from django_eventstream import send_event
 
@@ -24,10 +24,19 @@ class GameCreateView(CreateView):
     ]
 
 
+class GameUpdateView(UpdateView):
+    model = Game
+    fields = [
+        "name",
+        "page_size"
+    ]
+    template_name = 'host/game_update.html'
+
+
 class GameDetailView(DetailView):
     model = Game
     context_object_name = 'game'
-    template_name = 'core/board_base.html'
+    template_name = 'host/edit.html'
     extra_context = {
         'answer_template': 'host/answer.html',
         'host': True,
@@ -60,10 +69,41 @@ class AnswerCreateView(CreateView):
         return reverse_lazy('host:game-detail', kwargs={'pk': self.object.category.game.pk})
 
 
+class AnswerUpdateView(UpdateView):
+    model = Answer
+    fields = [
+        "answer",
+        "points",
+        "double",
+        "question",
+        "completed",
+    ]
+    template_name = 'host/answer_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('host:game-detail', kwargs={'pk': self.object.category.game.pk})
+
+
 class PlayerCreateView(CreateView):
     model = Player
     fields = [
         "name",
         "game",
+        "button_id",
     ]
     template_name = 'host/player_create.html'
+
+    def get_success_url(self):
+        return reverse_lazy('host:game-detail', kwargs={'pk': self.object.game.pk})
+
+
+class PLayerUpdateView(UpdateView):
+    model = Player
+    fields = [
+        "name",
+        "button_id",
+    ]
+    template_name = 'host/player_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('host:game-detail', kwargs={'pk': self.object.game.pk})

@@ -1,9 +1,9 @@
-{% block header %}
-    <div class="player-buzz-in" id="player-buzz-in" hx-get="{% url 'play:game' game.pk %}" hx-target="#player-buzz-in" hx-select="#player-buzz-in" hx-swap="outerHTML" hx-trigger="buzz" hx-swap-oob="true">
+{% block header %}{{ page_number }}
+    <div class="player-buzz-in" id="player-buzz-in" hx-get="{% url 'play:game' game.pk %}?page=1                " hx-target="#player-buzz-in" hx-select="#player-buzz-in" hx-swap="outerHTML" hx-trigger="buzz" hx-swap-oob="true">
         {% if game.current_player %}
-            {{ game.current_player }}
+            Current Player: {{ game.current_player }}
         {% else %}
-            Buzz In!
+            Current Player: Nobody! Buzz In!
         {% endif %}
     </div>
 {% endblock %}

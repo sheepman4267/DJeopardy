@@ -1,0 +1,6 @@
+{{ form.errors }}
+<form class="answer" method="post" action="{% url 'host:answer-update' answer.pk %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>

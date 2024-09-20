@@ -6,6 +6,7 @@ class Game(models.Model):
     name = models.CharField(max_length=100)
     current_answer = models.ForeignKey('Answer', on_delete=models.CASCADE, null=True, blank=True)
     current_player = models.ForeignKey('Player', on_delete=models.CASCADE, null=True, blank=True, related_name='+')
+    page_size = models.IntegerField(default=6)
 
     def __str__(self):
         return self.name

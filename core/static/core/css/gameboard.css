@@ -86,6 +86,14 @@ form.answer textarea {
 .player-buzz-in {
     font-size: 40pt;
     text-align: center;
+    font-family: "League Gothic Regular";
+    background: #000000aa;
+    border-radius: 1.5rem;
+    width: 50%;
+    margin-inline: auto;
+    margin-block: 1rem;
+    color: white;
+    padding: 0.5rem;
 }
 
 .player-footer ul {

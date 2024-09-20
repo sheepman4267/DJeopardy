@@ -1,1 +1,2 @@
-<button class="answer">{{ answer.points }}</button>
+{{ answer.points }}: {{ answer.question }} - {{ answer.answer }}
+<button hx-get="{% url 'host:answer-update' answer.pk %}" hx-swap="innerHTML" hx-target="closest li">Edit</button>
