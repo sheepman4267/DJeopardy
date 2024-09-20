@@ -23,6 +23,8 @@ class PlayView(DetailView):
         paginator = Paginator(categories, context['game'].page_size)
         context['page'] = paginator.page(self.request.GET.get('page'))
         context['page_number'] = self.request.GET.get('page')
+        context['next_page'] = int(self.request.GET.get('page')) + 1
+        context['previous_page'] = int(self.request.GET.get('page')) - 1
         return context
 
 

@@ -14,5 +14,7 @@
 {% endblock %}
 
 {% block header %}
+    <a href="{% url 'play:game' game.pk %}?page={{ previous_page }}"><button>Previous</button></a>
     {% include 'play/buzz_in.html' with page_number=page_number  %}
+    <a href="{% url 'play:game' game.pk %}?page={{ next_page }}"><button>Next</button></a>
 {% endblock %}
