@@ -94,6 +94,8 @@ form.answer textarea {
     margin-block: 1rem;
     color: white;
     padding: 0.5rem;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
 
 .player-footer ul {
@@ -149,4 +151,9 @@ form.answer textarea {
         opacity: 1;
         transform: scale(100%) rotate(0deg) translate(0);
     }
+}
+
+body:not(:has(.fullanswer:not(.completed))) .player-buzz-in {
+    opacity: 0;
+    transition: opacity 0.5s;
 }
