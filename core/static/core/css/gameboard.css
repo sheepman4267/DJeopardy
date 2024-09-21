@@ -151,7 +151,7 @@ form.answer textarea {
     gap: 1rem;
     padding: 1rem;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 8rem;
     color: yellow;
     font-family: "League Gothic Regular";
     z-index: 1000;
@@ -172,4 +172,47 @@ form.answer textarea {
 body:not(:has(.fullanswer:not(.completed))) .player-buzz-in {
     opacity: 0;
     transition: opacity 0.5s;
+}
+
+.fullanswer button {
+    font-size: 2rem;
+    border-radius: 3rem;
+    padding: 1rem;
+    margin-inline: 0.5rem;
+    font-weight: bold;
+}
+
+button.continue {
+    background: #5386a5;
+    color: white;
+    border: 8px solid #66f1de;
+    box-shadow: 0 0 40px #9fffe4;
+    display: block;
+}
+
+button#correct {
+    background: #53a565;
+    color: white;
+    border: 8px solid #921cd6;
+    box-shadow: 0 0 40px #b8ff9f;
+}
+
+button#incorrect {
+    background: #a55353;
+    color: white;
+    border: 8px solid #bd4949;
+    box-shadow: 0 0 40px #e78a8a;
+}
+
+button#correct:hover {
+    animation: rotate 0.5s infinite linear;
+}
+
+button#incorrect:hover {
+    background: #8c1941;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
 }
