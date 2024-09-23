@@ -102,6 +102,7 @@ class PLayerUpdateView(UpdateView):
     fields = [
         "name",
         "button_id",
+        "points",
     ]
     template_name = 'host/player_update.html'
 
